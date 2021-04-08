@@ -255,6 +255,7 @@ h1.title {
     font-size: 18px;
 	font-family: 'Lato', sans-serif; font-weight:400;
 	margin: 19px 0 110px 0;
+	text-align: justify;
 }
 .about_info a{
 	color:#00bbcc;
