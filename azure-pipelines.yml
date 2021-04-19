@@ -14,7 +14,7 @@ trigger:
  paths:
   exclude:
    - README.md
-   - .git/*
+   - .git/**
 
 pool:
   vmImage: ubuntu-latest
