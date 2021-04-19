@@ -12,9 +12,12 @@ trigger:
     - master
 
  paths:
+  include:
+    - bootstrap/**
+    - image_gallery/**
   exclude:
-   - README.md
-   - .git/**
+    - README.md
+    - .git/**
 
 pool:
   vmImage: ubuntu-latest
