@@ -18,19 +18,15 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(build.sourcesDirectory)/s'
+    SourceFolder: '$(Agent.BuildDirectory)'
     Contents: '**'
-    TargetFolder: '$(build.sourcesDirectory)/Arch.zip'
+    TargetFolder: '$(build.SourcesDirectory)/Arch.zip'
     OverWrite: true
-
-- task: ZipDirectory@1
-  inputs:
-    ItemSpec: '$(build.sourcesDirectory)/s'
 
 # Archive the files
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(build.sourcesDirectory)'
+    rootFolderOrFile: '$(build.SourcesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Build.zip'
