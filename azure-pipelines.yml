@@ -43,19 +43,10 @@ steps:
   displayName: Archiving files
   inputs:
     rootFolderOrFile: '$(build.SourcesDirectory)/Destination'
-    includeRootFolder: true
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Build.zip'
     replaceExistingArchive: true
-
-#- task: ArchiveFiles@2
-#  inputs:
-#    rootFolderOrFile: '$(build.SourcesDirectory)'
-#    includeRootFolder: true
-#    archiveType: 'zip'
-#    archiveFile: '$(Build.ArtifactStagingDirectory)/Build.zip'
-#    replaceExistingArchive: true
-#    verbose: true
 
 # Publish artefacts
 - task: PublishBuildArtifacts@1
