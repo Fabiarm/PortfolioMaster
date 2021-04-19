@@ -34,6 +34,7 @@ steps:
       *.git
       *.yml
       *.yaml
+      .git
 
 # Archive the files
 - task: ArchiveFiles@2
