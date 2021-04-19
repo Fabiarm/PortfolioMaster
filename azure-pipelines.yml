@@ -11,29 +11,47 @@ trigger:
   exclude:
     - master
 
- paths:
-  include:
-    - bootstrap/**
-    - image_gallery/**
-  exclude:
-    - README.md
-    - .git
-    - .git/**
-
 pool:
   vmImage: ubuntu-latest
 
 steps:
 
+# Copy files to destination folder
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(build.SourcesDirectory)'
+    Contents: '**'
+    TargetFolder: '$(build.SourcesDirectory)/Destination'
+    CleanTargetFolder: true
+    OverWrite: true
+
+# Remove unused files
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: '$(build.SourcesDirectory)/Destination'
+    Contents: |
+      *.md
+      *.git
+      *.yml
+      *.yaml
+
 # Archive the files
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(build.SourcesDirectory)'
+    rootFolderOrFile: '$(build.SourcesDirectory)/Destination'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/Build.zip'
     replaceExistingArchive: true
-    verbose: true
+
+#- task: ArchiveFiles@2
+#  inputs:
+#    rootFolderOrFile: '$(build.SourcesDirectory)'
+#    includeRootFolder: true
+#    archiveType: 'zip'
+#    archiveFile: '$(Build.ArtifactStagingDirectory)/Build.zip'
+#    replaceExistingArchive: true
+#    verbose: true
 
 # Publish artefacts
 - task: PublishBuildArtifacts@1
