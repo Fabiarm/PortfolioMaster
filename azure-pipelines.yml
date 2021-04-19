@@ -19,4 +19,24 @@ steps:
   inputs:
     rootFolderOrFile: '$(build.sourcesDirectory)'
     includeRootFolder: false
+
+# Archive the files
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(agent.builddirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+# Copy zip file to 'source' folder
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(agent.builddirectory)'
+    Contents: '*.zip'
+    TargetFolder: '/source'
+    CleanTargetFolder: true
+    OverWrite: true
+
+# Publish artefacts
 - task: PublishBuildArtifacts@1
