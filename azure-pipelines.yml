@@ -17,6 +17,7 @@ trigger:
     - image_gallery/**
   exclude:
     - README.md
+    - .git
     - .git/**
 
 pool:
