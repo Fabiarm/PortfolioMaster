@@ -11,17 +11,15 @@ trigger:
   exclude:
     - master
 
+ paths:
+  exclude:
+   - README.md
+   - .git/*
+
 pool:
   vmImage: ubuntu-latest
 
 steps:
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/Arch.zip'
-    OverWrite: true
 
 # Archive the files
 - task: ArchiveFiles@2
