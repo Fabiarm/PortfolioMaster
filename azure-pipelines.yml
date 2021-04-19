@@ -20,7 +20,7 @@ steps:
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
     Contents: '**'
-    TargetFolder: '$(build.SourcesDirectory)/Arch.zip'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/Arch.zip'
     OverWrite: true
 
 # Archive the files
