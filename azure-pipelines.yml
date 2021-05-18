@@ -15,8 +15,39 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: ArchiveFiles@2
+
+# Copy files to destination folder
+- task: CopyFiles@2
+  displayName: Copy files to destination folder
   inputs:
-    rootFolderOrFile: '$(build.sourcesDirectory)'
+    SourceFolder: '$(build.SourcesDirectory)'
+    Contents: '**'
+    TargetFolder: '$(build.SourcesDirectory)/Destination'
+    CleanTargetFolder: true
+    OverWrite: true
+
+# Remove unused files
+- task: DeleteFiles@1
+  displayName: Delete files from destination folder
+  inputs:
+    SourceFolder: '$(build.SourcesDirectory)/Destination'
+    Contents: |
+      *.md
+      *.git
+      *.yml
+      *.yaml
+      .git
+
+# Archive the files
+- task: ArchiveFiles@2
+  displayName: Archiving files
+  inputs:
+    rootFolderOrFile: '$(build.SourcesDirectory)/Destination'
     includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Build.zip'
+    replaceExistingArchive: true
+
+# Publish artefacts
 - task: PublishBuildArtifacts@1
+  displayName: Publish artefacts
