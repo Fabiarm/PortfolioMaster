@@ -207,11 +207,11 @@ section{
 	margin-top:32px;
 	}
 h1.title {
-	color:#404040;
+	color:#000;
 	border-bottom:1px solid #bfbfbf;
 	text-align:center;
-	font-size:28px;
-	font-family: 'Lato', sans-serif; font-weight:700;
+	font-size:30px;
+	font-family: Tahoma, sans-serif; font-weight:700;
 	padding: 135px 0 36px 0;
 }
 .rzm_progress_bar{
