@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\img"
+    "\\img",
+    "\\stylesheets"
   ],
-  "SelectedNode": "\\img\\header_bacground.jpg",
+  "SelectedNode": "\\stylesheets\\layout.css",
   "PreviewInSolutionExplorer": false
 }
